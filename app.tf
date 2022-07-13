@@ -1,5 +1,4 @@
 data "aws_ami" "app" {
-  most_recent = true
 
   filter {
     name   = "name"
@@ -15,7 +14,7 @@ data "aws_ami" "app" {
 }
 
 resource "aws_instance" "app" {
-  ami           = data.aws_ami.ubuntu1.id
+  ami           = data.aws_ami.app.id
   instance_type = "t2.micro"
   key_name      = "apache test"
   vpc_security_group_ids = [aws_security_group.public-sg.id]
